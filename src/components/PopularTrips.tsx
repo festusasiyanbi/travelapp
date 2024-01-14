@@ -1,10 +1,4 @@
-import {
-  View,
-  ScrollView,
-  StyleSheet,
-  TouchableHighlight,
-  Image,
-} from 'react-native';
+import {View, StyleSheet, TouchableHighlight, Image} from 'react-native';
 import React from 'react';
 import {DataProp, data} from '../data/data';
 import DefaultText from './DefaultText';
@@ -12,9 +6,12 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import Icon6 from 'react-native-vector-icons/FontAwesome6';
 import {useNavigation} from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {RootStackParamList} from 'stacks/StackNavigator';
 
 const PopularTrips = () => {
-  const navigation = useNavigation();
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const filteredItem = data.filter(item => item.popular === true);
 
   const handlePress = (item: DataProp) => {
@@ -26,9 +23,7 @@ const PopularTrips = () => {
         <DefaultText style={styles.popularTxt}>Popular for me</DefaultText>
         <Icon name="ellipsis-h" color="#fff" size={20} />
       </View>
-      <ScrollView
-        style={styles.scrollViewContainer}
-        showsVerticalScrollIndicator={false}>
+      <View style={styles.scrollViewContainer}>
         {filteredItem.map((item, index) => (
           <TouchableHighlight
             style={styles.itemWrapper}
@@ -80,7 +75,7 @@ const PopularTrips = () => {
             </LinearGradient>
           </TouchableHighlight>
         ))}
-      </ScrollView>
+      </View>
     </View>
   );
 };

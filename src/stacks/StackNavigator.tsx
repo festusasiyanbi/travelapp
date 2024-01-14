@@ -10,6 +10,10 @@ export type RootStackParamList = {
   Home: undefined;
   DetailsScreen: {item: DataProp};
   AvailableTrips: undefined;
+  Favorite: undefined;
+  Menu: undefined;
+  Profile: undefined;
+  DisplayTrips: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();

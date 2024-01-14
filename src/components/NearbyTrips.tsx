@@ -6,6 +6,8 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import {Image} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {RootStackParamList} from 'stacks/StackNavigator';
 
 const itemCategory = [
   {category: 'all', icon: 'home'},
@@ -15,7 +17,8 @@ const itemCategory = [
 ];
 
 export default function NearbyTrips() {
-  const navigation = useNavigation();
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const [filteredItem, setFilteredItem] = useState<DataProp[]>(data);
   const [activeCategory, setActiveCategory] = useState<string>('all');
 
@@ -52,7 +55,7 @@ export default function NearbyTrips() {
                 ]}>
                 <Icon
                   name={item.icon}
-                  size={17}
+                  size={15}
                   color={activeCategory === item.category ? '#26333A' : '#fff'}
                 />
               </View>
@@ -116,6 +119,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     columnGap: 8,
+    paddingHorizontal: 5,
   },
   scrollViewContainer: {
     height: 260,
@@ -140,7 +144,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    columnGap: 10,
+    columnGap: 7,
   },
   button: {
     width: '24%',
@@ -192,8 +196,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   categoryIconView: {
-    height: 30,
-    width: 30,
+    height: 25,
+    width: 25,
     backgroundColor: '#434E55',
     borderRadius: 50,
     alignItems: 'center',
