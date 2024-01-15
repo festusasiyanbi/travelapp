@@ -1,5 +1,5 @@
 import {ScrollView, StyleSheet, TouchableHighlight, View} from 'react-native';
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {DataProp, data} from '../data/data';
 import DefaultText from './DefaultText';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -8,6 +8,10 @@ import {useNavigation} from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParamList} from 'stacks/StackNavigator';
+import {
+  FavoriteContext,
+  FavoriteContextType,
+} from '../content/FavoriteProvider';
 
 const itemCategory = [
   {category: 'all', icon: 'home'},
@@ -16,11 +20,16 @@ const itemCategory = [
   {category: 'nature', icon: 'tree'},
 ];
 
-export default function NearbyTrips() {
+const NearbyTrips = () => {
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const [filteredItem, setFilteredItem] = useState<DataProp[]>(data);
   const [activeCategory, setActiveCategory] = useState<string>('all');
+  const {
+    favoritedItems,
+    handleAddItemToFavorite,
+    handleRemoveItemFromFavorite,
+  } = useContext(FavoriteContext) as FavoriteContextType;
 
   const filterCategory = (category: string) => {
     if (category === 'all') {
@@ -34,6 +43,16 @@ export default function NearbyTrips() {
   };
   const handlePress = (item: DataProp) => {
     return navigation.navigate('DetailsScreen', {item});
+  };
+  const handleFavoriteClick = (item: DataProp) => {
+    const isItemFavorited = favoritedItems.some((favoriteItem: DataProp) => {
+      return favoriteItem.id === item.id;
+    });
+    if (isItemFavorited) {
+      handleRemoveItemFromFavorite(item.id);
+    } else {
+      handleAddItemToFavorite(item);
+    }
   };
 
   return (
@@ -84,11 +103,17 @@ export default function NearbyTrips() {
             <LinearGradient
               colors={['#18538F', '#325775', '#4F4D59', '#673C2F', '#473530']}
               style={styles.gradient}>
-              <View style={styles.notificationView}>
+              <TouchableHighlight
+                style={styles.notificationView}
+                onPress={() => handleFavoriteClick(item)}>
                 <DefaultText>
-                  <Icon name="heart" color="#DB5858" size={18} />
+                  <Icon
+                    name="heart"
+                    color={favoritedItems.includes(item) ? '#DB5858' : '#fff'}
+                    size={18}
+                  />
                 </DefaultText>
-              </View>
+              </TouchableHighlight>
               {item.image && (
                 <Image source={item.image} style={styles.itemImage} />
               )}
@@ -108,7 +133,9 @@ export default function NearbyTrips() {
       </ScrollView>
     </View>
   );
-}
+};
+
+export default NearbyTrips;
 
 const styles = StyleSheet.create({
   container: {

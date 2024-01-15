@@ -1,15 +1,15 @@
 import React from 'react';
 import {RootStackParamList} from './StackNavigator';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import Favorite from '../screens/Favorite';
-import Menu from '../screens/Menu';
-import Profile from '../screens/Profile';
+import Favorite from '../tabs/Favorite';
+import Menu from '../tabs/Menu';
+import Profile from '../tabs/Profile';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import DisplayTrips from '../screens/DisplayTrips';
 import {StyleSheet, View} from 'react-native';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 const screenOptions = ({route}: any) => ({
-  tabBarIcon: () => {
+  tabBarIcon: ({focused}: any) => {
     let iconName: any;
     if (route.name === 'DisplayTrips') {
       iconName = 'home';
@@ -22,7 +22,8 @@ const screenOptions = ({route}: any) => ({
     }
 
     return (
-      <View style={[styles.iconWrapper]}>
+      <View
+        style={[styles.iconWrapper, focused ? styles.styledBackground : null]}>
         <Icon name={iconName} size={18} color="#fff" />
       </View>
     );
@@ -75,6 +76,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 50,
-    backgroundColor: '#5194C1',
+    backgroundColor: 'transparent',
+  },
+  styledBackground: {
+    backgroundColor: '#5194C1'
   },
 });

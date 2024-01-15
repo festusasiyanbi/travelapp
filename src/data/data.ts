@@ -1,4 +1,5 @@
 export interface DataProp {
+  id: number;
   name: string;
   address: string;
   description: string;
@@ -12,6 +13,7 @@ export interface DataProp {
 
 export const data: DataProp[] = [
   {
+    id: 1,
     name: 'Albuquerque New Temple',
     address: 'Hogan Ave Unit 12',
     description:
@@ -24,6 +26,7 @@ export const data: DataProp[] = [
     review: 213,
   },
   {
+    id: 2,
     name: 'Abidjan Ivory Coast Temple',
     address: 'Markham Rd unit 27',
     description:
@@ -36,6 +39,7 @@ export const data: DataProp[] = [
     review: 230,
   },
   {
+    id: 3,
     name: 'Vietnam’s Coastline Beach',
     address: 'Nelson Rd unit 12',
     description:
@@ -51,6 +55,7 @@ export const data: DataProp[] = [
     review: 223,
   },
   {
+    id: 4,
     name: 'Phu Quoc Island Beach',
     address: 'Kingston Rd unit 10',
     description:
@@ -68,6 +73,7 @@ export const data: DataProp[] = [
     review: 143,
   },
   {
+    id: 5,
     name: 'Ramla Bay',
     address: 'Morningside Ave Unit 17',
     description:
@@ -82,6 +88,7 @@ export const data: DataProp[] = [
     review: 137,
   },
   {
+    id: 6,
     name: 'Porto Ferro',
     address: 'Ellesmere Rd unit 10',
     description:
