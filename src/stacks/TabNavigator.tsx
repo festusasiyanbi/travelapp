@@ -6,9 +6,15 @@ import Profile from '../tabs/Profile';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import DisplayTrips from '../screens/DisplayTrips';
 import {StyleSheet, View} from 'react-native';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {
+  BottomTabNavigationOptions,
+  BottomTabScreenProps,
+  createBottomTabNavigator,
+} from '@react-navigation/bottom-tabs';
 
-const screenOptions = ({route}: any) => ({
+const screenOptions: (
+  props: BottomTabScreenProps<RootStackParamList>,
+) => BottomTabNavigationOptions = ({route}) => ({
   tabBarIcon: ({focused}: any) => {
     let iconName: any;
     if (route.name === 'DisplayTrips') {

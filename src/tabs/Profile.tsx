@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
     borderColor: '#5194C1',
     height: 45,
     borderRadius: 10,
-    marginTop: 20,
+    marginVertical: 30,
   },
   logoutButtonTxt: {
     color: '#5194C1',
