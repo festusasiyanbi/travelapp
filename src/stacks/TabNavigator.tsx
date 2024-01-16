@@ -1,7 +1,7 @@
 import React from 'react';
 import {RootStackParamList} from './StackNavigator';
 import Favorite from '../tabs/Favorite';
-import Menu from '../tabs/Menu';
+import Notification from '../tabs/Notification';
 import Profile from '../tabs/Profile';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import DisplayTrips from '../screens/DisplayTrips';
@@ -13,18 +13,18 @@ const screenOptions = ({route}: any) => ({
     let iconName: any;
     if (route.name === 'DisplayTrips') {
       iconName = 'home';
-    } else if (route.name === 'Menu') {
-      iconName = 'bars';
-    } else if (route.name === 'Profile') {
-      iconName = 'user-o';
     } else if (route.name === 'Favorite') {
       iconName = 'heart-o';
+    } else if (route.name === 'Notification') {
+      iconName = 'bell-o';
+    } else if (route.name === 'Profile') {
+      iconName = 'user-o';
     }
 
     return (
       <View
         style={[styles.iconWrapper, focused ? styles.styledBackground : null]}>
-        <Icon name={iconName} size={18} color="#fff" />
+        <Icon name={iconName} size={20} color="#fff" />
       </View>
     );
   },
@@ -54,9 +54,9 @@ const TabNavigator = () => {
         options={{tabBarLabel: 'Favorite', headerShown: false}}
       />
       <Tab.Screen
-        name="Menu"
-        component={Menu}
-        options={{tabBarLabel: 'Menu', headerShown: false}}
+        name="Notification"
+        component={Notification}
+        options={{tabBarLabel: 'Notification', headerShown: false}}
       />
       <Tab.Screen
         name="Profile"
@@ -79,6 +79,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
   styledBackground: {
-    backgroundColor: '#5194C1'
+    backgroundColor: '#5194C1',
   },
 });

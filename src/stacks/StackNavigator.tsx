@@ -11,7 +11,7 @@ export type RootStackParamList = {
   DetailsScreen: {item: DataProp};
   AvailableTrips: undefined;
   Favorite: undefined;
-  Menu: undefined;
+  Notification: undefined;
   Profile: undefined;
   DisplayTrips: undefined;
 };

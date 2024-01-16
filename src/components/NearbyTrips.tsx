@@ -110,7 +110,7 @@ const NearbyTrips = () => {
                   <Icon
                     name="heart"
                     color={favoritedItems.includes(item) ? '#DB5858' : '#fff'}
-                    size={18}
+                    size={20}
                   />
                 </DefaultText>
               </TouchableHighlight>

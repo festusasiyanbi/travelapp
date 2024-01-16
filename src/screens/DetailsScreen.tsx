@@ -41,7 +41,7 @@ const DetailsScreen = ({route}: DetailsProps) => {
               <Text style={styles.caretTxt}>&lt;</Text>
             </TouchableHighlight>
             <TouchableHighlight style={styles.roundedView}>
-              <AntDesign name="message1" size={25} color="#fff" />
+              <AntDesign name="message1" size={20} color="#fff" />
             </TouchableHighlight>
           </View>
         </ImageBackground>
@@ -67,7 +67,7 @@ const DetailsScreen = ({route}: DetailsProps) => {
           </View>
           <View style={styles.addressView}>
             <DefaultText style={styles.addressTxt}>
-              <Icon6 name="location-dot" color="red" size={18} /> {item.address}
+              <Icon6 name="location-dot" color="red" size={20} /> {item.address}
             </DefaultText>
             <DefaultText>/per person</DefaultText>
           </View>
@@ -104,7 +104,7 @@ const DetailsScreen = ({route}: DetailsProps) => {
             </View>
             <View style={styles.ratingView}>
               <DefaultText>{item.star}</DefaultText>
-              <Icon name="star" color="yellow" size={15} />
+              <Icon name="star" color="yellow" size={20} />
               <DefaultText>({item.review}k review)</DefaultText>
             </View>
           </View>

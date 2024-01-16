@@ -3,6 +3,7 @@ import {
   ScrollView,
   StyleSheet,
   TextInput,
+  TouchableHighlight,
   View,
 } from 'react-native';
 import React from 'react';
@@ -12,8 +13,11 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import Icon6 from 'react-native-vector-icons/FontAwesome6';
 import NearbyTrips from '../components/NearbyTrips';
 import PopularTrips from '../components/PopularTrips';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {RootStackParamList} from 'stacks/StackNavigator';
 
-const DisplayTrips = () => {
+type NotificationProps = NativeStackScreenProps<RootStackParamList>;
+const DisplayTrips = ({navigation}: NotificationProps) => {
   return (
     <View style={styles.container}>
       <View>
@@ -23,20 +27,26 @@ const DisplayTrips = () => {
               Current Location
             </DefaultText>
             <DefaultText style={styles.locationTxt}>
-              <Icon6 name="location-dot" color="red" size={18} /> | Scarborough,
+              <Icon6 name="location-dot" color="red" size={20} /> | Scarborough,
               ON
             </DefaultText>
           </View>
-          <View style={styles.notificationView}>
-            <DefaultText>
-              <Icon name="bell-o" size={25} />
-            </DefaultText>
-            <View style={styles.notificationWrapper}>
-              <DefaultText>.</DefaultText>
-            </View>
-          </View>
+          <TouchableHighlight
+            style={styles.notificationView}
+            onPress={() => navigation.navigate('Notification')}>
+            <>
+              <DefaultText>
+                <Icon name="bell-o" size={20} />
+              </DefaultText>
+              <View style={styles.notificationWrapper}>
+                <DefaultText>.</DefaultText>
+              </View>
+            </>
+          </TouchableHighlight>
         </SafeAreaView>
-        <ScrollView>
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          style={styles.scrollViewContainer}>
           <View style={styles.wrapper}>
             <TextInput
               style={styles.textInput}
@@ -45,7 +55,7 @@ const DisplayTrips = () => {
             />
             <View style={styles.filterWrapper}>
               <DefaultLinearGradient
-                textContent={<Icon name="filter" size={25} />}
+                textContent={<Icon name="filter" size={20} />}
                 style={styles.filterView}
               />
             </View>
@@ -71,6 +81,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginBottom: 30,
+  },
+  scrollViewContainer: {
+    height: '83%',
   },
   currentTxt: {
     fontWeight: '700',

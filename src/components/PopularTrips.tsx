@@ -52,7 +52,7 @@ const PopularTrips = () => {
                 <View style={styles.ratingView}>
                   <View style={styles.reviewView}>
                     <DefaultText style={styles.ratingTxt}>
-                      {item.star} <Icon name="star" color="yellow" size={12} />
+                      {item.star} <Icon name="star" color="yellow" size={20} />
                     </DefaultText>
                     <DefaultText style={styles.ratingTxt}>
                       {item.review}k
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     rowGap: 20,
   },
   scrollViewContainer: {
-    height: 180,
+    height: '100%',
     width: '100%',
   },
   popularView: {
